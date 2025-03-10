@@ -1,11 +1,15 @@
-from flask import Flask, jsonify
+from flask import Flask, jsonify, request
 from db import orders_db
 
 app = Flask(__name__)
 
 
-@app.route('/orders/<order_number>', methods=['GET'])
-def get_order(order_number: str):
+@app.route('/orders', methods=['GET'])
+def get_order():
+    order_number = request.args.get('order_number')
+    if not order_number:
+        return jsonify({"error": "order_number query parameter is required"}), 400
+        
     if order_number in orders_db:
         order = orders_db[order_number]
         return jsonify({
