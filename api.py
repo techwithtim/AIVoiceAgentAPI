@@ -22,7 +22,7 @@ def get_order():
             "status": order.status,
             "shipping_address": order.shipping_address
         })
-    return jsonify({"error": "Order not found"}), 404
+    return jsonify({"status": "Not found"}), 404
 
 if __name__ == '__main__':
     app.run(debug=True)
