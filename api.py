@@ -6,10 +6,11 @@ app = Flask(__name__)
 
 @app.route('/orders', methods=['GET'])
 def get_order():
-    order_number = request.args.get('order_number')
-    if not order_number:
-        return jsonify({"error": "order_number query parameter is required"}), 400
+    data = request.get_json()
+    if not data or 'order_number' not in data:
+        return jsonify({"error": "order_number is required in request body"}), 400
         
+    order_number = data['order_number']
     if order_number in orders_db:
         order = orders_db[order_number]
         return jsonify({
