@@ -10,6 +10,7 @@ def get_order():
         return jsonify({"error": "Content-Type must be application/json"}), 400
         
     data = request.get_json(silent=False)
+    print(data)
     if data is None:
         return jsonify({"error": "Invalid JSON in request body"}), 400
         
@@ -17,6 +18,7 @@ def get_order():
         return jsonify({"error": "order_number is required in request body"}), 400
         
     order_number = data['order_number']
+    print(order_number)
     if order_number in orders_db:
         order = orders_db[order_number]
         return jsonify({
