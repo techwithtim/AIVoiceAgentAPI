@@ -6,8 +6,14 @@ app = Flask(__name__)
 
 @app.route('/orders', methods=['GET'])
 def get_order():
-    data = request.get_json()
-    if not data or 'order_number' not in data:
+    if not request.is_json:
+        return jsonify({"error": "Content-Type must be application/json"}), 400
+        
+    data = request.get_json(silent=False)
+    if data is None:
+        return jsonify({"error": "Invalid JSON in request body"}), 400
+        
+    if 'order_number' not in data:
         return jsonify({"error": "order_number is required in request body"}), 400
         
     order_number = data['order_number']
@@ -22,7 +28,7 @@ def get_order():
             "status": order.status,
             "shipping_address": order.shipping_address
         })
-    return jsonify({"status": "Not found"}), 404
+    return jsonify({"error": "Order not found"}), 404
 
 if __name__ == '__main__':
     app.run(debug=True)

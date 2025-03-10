@@ -14,8 +14,8 @@ class Order:
 
 
 orders_db: Dict[str, Order] = {
-    "0000001": Order(
-        order_number="0000001",
+    "101": Order(
+        order_number="101",
         customer_name="John Doe",
         items=[
             {"product": "Laptop", "quantity": 1, "price": 999.99},
@@ -26,8 +26,8 @@ orders_db: Dict[str, Order] = {
         status="Delivered",
         shipping_address="123 Main St, New York, NY 10001"
     ),
-    "0000002": Order(
-        order_number="0000002",
+    "102": Order(
+        order_number="102",
         customer_name="Jane Smith",
         items=[
             {"product": "Headphones", "quantity": 2, "price": 79.99},
@@ -38,8 +38,8 @@ orders_db: Dict[str, Order] = {
         status="Processing",
         shipping_address="456 Oak Ave, Los Angeles, CA 90001"
     ),
-    "0000003": Order(
-        order_number="0000003",
+    "103": Order(
+        order_number="103",
         customer_name="Bob Johnson",
         items=[
             {"product": "Smart Watch", "quantity": 1, "price": 299.99},
